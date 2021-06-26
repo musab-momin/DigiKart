@@ -1,0 +1,179 @@
+.main
+{
+    width: 90%;
+    margin: 10em auto;
+    display: flex;
+    justify-content: space-between;
+    /* border: 2px solid black; */
+}
+
+.main button
+{
+    width: 20%;
+    height: 50px;
+    margin: 1em 1em;
+    border: none;
+    font-size: 1.1rem;
+    color: #fff;
+    background: #CC0000;
+}
+
+.main button:hover
+{
+    background: #ff4444;
+}
+
+.main .elements
+{
+    width: 60%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    /* border: 2px solid crimson; */
+}
+
+hr
+{
+    background-color: #121212;
+    border: 0;
+    clear:both;
+    display:block;
+    width: 96%;               
+    height: 1px;
+}
+.main .elements h2
+{
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 0 10px;
+    color: #121212;
+}
+
+.main .elements .details 
+{
+    margin-left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    /* border: 2px solid black; */
+    overflow: hidden;
+}
+.main .elements .details h3
+{
+    width: 150px;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #666;
+    /* border: 2px solid crimson; */
+}
+
+.main .elements .details button
+{
+    background: #fff;
+    border: none;
+    transform: scale();
+    color: #121212;
+    transition: transform .2s none;
+
+}
+.main .elements .details button:hover
+{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.main .elements .details .qty
+{
+    width: 100px;
+    height: 80px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    align-items: center;
+    /* border: 2px solid crimson; */
+    overflow: none;
+}
+
+.main .elements .details .qty h3
+{
+    padding: 0;
+    margin: 0;
+}
+.main .elements .details .qty button
+{
+    width: max-content;
+    height: max-content;
+    text-align: center;
+    font-size: 1.5rem;
+    /* border: 2px solid black; */
+    background: #e2e2e2;
+}
+
+.bill
+{
+    width: 30%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1em;
+    background: #fff;
+}
+
+.bill h3
+{
+    padding: 1em 0;
+    padding-left: 20px;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #222;
+}
+
+.bill .pay
+{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 10px;
+}
+
+.main .bill .pay span,
+.main .bill .pay p
+{
+    font-size: 1.1rem;
+    font-weight: 200;
+    padding: 1em 1em;
+}
+
+.bill .pay-bill
+{
+    width: 90%;
+    height: 30px;
+    margin-left: 10px;
+    background: #ece9e9;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.bill .pay-bill span
+{
+    font-size: 1.1rem;
+    font-weight: 200;
+    padding: .5em 0;
+}
+.bill button
+{
+    width: 90%;
+    height: 50px;
+    margin: 1em 1em;
+    border: none;
+    font-size: 1.1rem;
+    color: #fff;
+    background: #264a7e;
+}
+
+.bill button:hover
+{
+    background: #3663a1;
+}

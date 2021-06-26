@@ -1,0 +1,33 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% block title %} {{product.product_name}} {% endblock title %}
+
+{% block body%}
+<div class="vcontainer">
+    <section id="img-sec">
+        <img src="/media/{{product.image}}" alt="#">
+    </section>
+    <section>
+        <h2 id="namepr{{ product.id }}">{{ product.product_name }}</h2>
+        <h3> &#8377;<span id="pricepr{{ product.id }}">{{ product.price}}</span></h3>
+        <button id="pr{{ product.id }}" class="cartbtn" onclick="add_to_cart('{{ product.id}}', '{{ product.product_name}}', '{{ product.price}}'); myFunction()"><i class="fas fa-shopping-cart fa-1x"></i><span>ADD TO CART</span></button>
+        <div class="description">
+            <h3>Description</h3>
+            <p>{{ product.desc }} </p>
+        </div>
+    </section>
+</div>
+
+<div id="snackbar">Item added in Cart</div>
+<script src="{% static 'scripts/cart1.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+<script>
+    function myFunction() {
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+    </script>
+
+
+{% endblock body %}

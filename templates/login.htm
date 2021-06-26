@@ -1,0 +1,30 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+
+
+
+{% block body %}
+{% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                <h3>{{ message }}</h3>
+        {% endfor %}
+            </div>
+{% endif %}
+<div class="rcontainer">
+    <div class="form-container">
+        <form action="/login" method="post">
+            {% csrf_token %}
+            <h2>Login!</h2>
+            <input type="text" placeholder="enter your name" name="username" required="required"><br>
+            <input type="password" placeholder="enter your password" id="pass" name="userpassword" onkeypress="validate()" pattern=".{8,}" required="required"><br>
+            <button type="submit" id="register_btn">Login</button>
+        </form>
+        <div class="redirector">
+            <span>don't have account</span><a href="/signup">  signup here!</a>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

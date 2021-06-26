@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response</title>
+</head>
+<body>
+    {{ response }}
+
+    <h1>Payment Status your order id is {{ response.ORDERID }}</h1>
+    {% if response.RESPCODE == '01' %}
+        <h1 id="success">Payment Done</h1>
+    {% else %}
+        Payment Faild
+    {% endif %}
+
+    <script>
+        let d = document.getElementById('success')
+        if(d == success)
+        {
+            localStorage.clear()
+            alert('Payment Done thanks for shoping!')
+            location.href = '/';
+        }
+    </script>
+</body>
+</html>

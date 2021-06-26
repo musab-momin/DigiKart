@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+html, body
+{
+    width: 100%;
+    height: 100%;
+}
+
+body
+{
+    font-family: 'Roboto', sans-serif;
+    background: #e2e2e2;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+}
+
+header
+{
+    /* position: relative; */
+    background: #041e42;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+header .logo
+{
+    width: max-content;
+    /* border: 2px solid black; */
+}
+header .logo a 
+{
+    text-decoration: none;
+    color: #121212;
+}
+header .logo a h1
+{
+    color: #fff;
+    padding: 0em 1em;
+    letter-spacing: 3px;
+    font-size: 1.4rem;
+}
+header .search
+{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid crimson; */
+}
+header .search form
+{
+    width: 90%;
+    display: flex;
+}
+header .search form input
+{
+    width: 100%;
+    height: 30px;
+    padding: .5em .5em;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border: none;
+}
+
+header .search form button
+{
+    padding: .5em 1em;
+    background-color: rgb(245, 198, 45);
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+}
+
+header .cart 
+{
+    /* border: 2px solid #fff; */
+    display: flex;
+    align-items: center;
+}
+
+header .burger 
+{
+    /* border: 2px solid #fff; */
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+header .burger button
+{
+    background: #041e42;
+    border: none;
+}
+
+header .menu
+{
+    position: absolute;
+    right: 0;
+    margin-right: 0;
+    height: max-content;
+    width: 20%;
+    height: 100vh;
+    background:#fff;
+    /* z-index: 10; */
+}
+
+header .menu nav
+{
+    height: 90%;
+    /* border: 2px solid black; */
+}
+
+header .menu nav button
+{
+    border: none;
+
+}
+
+
+header .menu nav ul li
+{
+    list-style: none;
+    margin: 3em;
+    /* border: 2px solid black; */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header .menu nav ul
+{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+header .menu nav ul li a
+{
+    padding-left: .5em;
+    text-decoration: none;
+    color: #121212;
+    font-size: 1rem;
+}
+header .menu nav ul li a:hover,
+header .menu nav button:hover,
+header .burger button:hover
+{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+/* tost message css */
+
+
+
+@media (max-width: 800px)
+{
+    header
+    {
+        justify-content: space-between;
+    }
+    header .logo a h1
+    {
+        padding: 0em .1em;
+        letter-spacing: 3px;
+        font-size: 1.4rem;
+    }
+    header .menu
+    {
+        width: 30%;
+    }
+
+}
+
+@media (max-width: 650px)
+{
+    header
+    {
+        justify-content: space-between;
+    }
+    header .logo a h1
+    {
+        padding: 0em .1em;
+        letter-spacing: 3px;
+        font-size: 1.4rem;
+        letter-spacing: .1em;
+    }
+    header .menu
+    {
+        width: 50%;
+    }
+}

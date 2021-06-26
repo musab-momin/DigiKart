@@ -1,0 +1,130 @@
+
+{% extends 'base.htm' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+
+
+
+
+{% block body%}
+<div class="slideshow-container" style="z-index: 1;" id="slideshow">
+
+    <div class="mySlides fade">
+      <img src="{% static 'static_images/sample-1.jpg' %}" style="width:100%">
+    </div>
+    
+    <div class="mySlides fade">
+      <img src="{% static 'static_images/sample-2.jpg' %}" style="width:100%;">
+      <div class="text">Caption Two</div>
+    </div>
+    
+    <div class="mySlides fade">
+      <img src="{% static 'static_images/sample-3.jpg' %}" style="width:100%">
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    
+    </div>
+</div>
+
+
+
+<div class="product-heading">
+  <h1>Start Shopping</h1>
+</div>
+
+<div class="container" id="card" style="z-index: 1;">
+  {% for i in product %}
+  <div class="card">
+    <div class="img-box">
+      <img src="/media/{{ i.image }}" alt="#" width="180px">
+      <ul class="action">
+        <li><a href="/productview/{{i.id}}" style="color: #121212;"><i class="fas fa-eye fa-2x"></i></a></li>
+        <li><button id="pr{{i.id}}" class="cartbtn" onclick="add_to_cart('{{ i.id}}', '{{ i.product_name}}', '{{ i.price}}'); myFunction()"><i class="fas fa-shopping-cart fa-2x"></i></button></li>
+      </ul>
+    </div>
+    <div class="content">
+      <div class="product-name">
+        <h3 id="namepr{{ i.id }}">{{i.product_name}}</h3>
+      </div>
+      <div class="price">
+        <h3>&#8377;<span id="pricepr{{ i.id }}">{{ i.price}}</span></h3>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+<div class="product-heading">
+  <h1>Electronics Items</h1>
+</div>
+<div class="container" id="card" style="z-index: 1;">
+  {% for i in Eproduct %}
+  <div class="card">
+    <div class="img-box">
+      <img src="/media/{{ i.image }}" alt="#" width="180px">
+      <ul class="action">
+        <li><a href="/productview/{{i.id}}" style="color: #121212;"><i class="fas fa-eye fa-2x"></i></a></li>
+        <li><button id="pr{{i.id}}" class="cartbtn" onclick="add_to_cart('{{ i.id}}', '{{ i.product_name}}', '{{ i.price}}')"><i class="fas fa-shopping-cart fa-2x"></i></button></li>
+      </ul>
+    </div>
+    <div class="content">
+      <div class="product-name">
+        <h3 id="namepr{{ i.id }}">{{i.product_name}}</h3>
+      </div>
+      <div class="price">
+        <h3>&#8377;<span id="pricepr{{ i.id }}">{{ i.price}}</span></h3>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="product-heading">
+  <h1>Fashions Wear</h1>
+</div>
+<div class="container">
+  {% for i in Cproduct %}
+  <div class="card">
+    <div class="img-box">
+      <img src="/media/{{ i.image }}" alt="#" width="180px">
+      <ul class="action">
+        <li><a href="/productview/{{i.id}}" style="color: #121212;"><i class="fas fa-eye fa-2x"></i></a></li>
+        <li><button class="cartbtn" id="pr{{i.id}}" onclick="add_to_cart('{{ i.id}}', '{{ i.product_name}}', '{{ i.price}}')"><i class="fas fa-shopping-cart fa-2x"></i></button></li>
+      </ul>
+    </div>
+    <div class="content">
+      <div class="product-name">
+        <h3 id="namepr{{ i.id }}">{{i.product_name}}</h3>
+      </div>
+      <div class="price">
+        <h3>&#8377;<span id="pricepr{{ i.id }}">{{ i.price}}</span></h3>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div id="snackbar">Item added in Cart</div>
+
+
+
+<script src="{% static 'scripts/caresoul.js' %}"></script>
+
+<script src="{% static 'scripts/cart1.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+<script>
+  function myFunction() {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+  </script>
+
+
+{% endblock body%}

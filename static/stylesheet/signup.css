@@ -1,0 +1,149 @@
+/* message section  */
+
+.message 
+{
+    width: 90%;
+	margin: 3em auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message h3
+{
+    width: 30%;
+    padding: 1em 1em;
+    background: #333;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: center;
+    border-radius: 20px;
+    animation: snack 1s;
+}
+
+@keyframes snack 
+{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.rcontainer
+{
+	width: 90%;
+	margin: 6em auto;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+.form-container
+{
+	width: 40%;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.form-container h2
+{
+    font-size: 1.8rem;
+	text-align: center;
+	padding: 1em;
+}
+.form-container form lable
+{
+	display: block;
+	padding: 0 1em;
+}
+.form-container form a
+{
+	margin: 2rem;
+	color: crimson;
+}
+.form-container form span
+{
+	color: #0275d8;
+	text-decoration: underline;
+}
+.form-container form
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1em;
+}
+
+.form-container .redirector
+{
+	width: 80%;
+	margin: 3em 0;
+	text-align: center;
+	/* border: 2px solid crimson; */
+}
+
+.form-container span
+{
+	font-size: 1rem;
+	padding-left: 3em;
+	color: #222;
+}
+
+.form-container a
+{
+	font-size: 1rem;
+	color: blue;
+}
+
+.form-container form input{
+	width: 90%;
+	height: 45px;
+	border: none;
+	border-bottom: 1px solid #121212;
+	outline: none;
+	padding: 0 .5em;
+	
+}
+/* .form-container form textarea{
+	width: 90%;
+	outline: none;
+	padding: .5em .5em;
+	margin-bottom: 1em;
+	
+} */
+
+.form-container form .add
+{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    /* border: 2px solid crimson; */
+}
+
+.form-container form .add input
+{
+    width: 40%;
+}
+
+.form-container form button
+{
+
+	width: 40%;
+	height: 40px;
+    margin: 1.5em 0;
+	/* padding: 1em .5em; */
+	border: none;
+	background: #041e42; 
+	margin-bottom: 1em;
+    font-size: 1rem;
+    font-weight: 500;
+	color: #fff;
+    text-align: center;
+	border-radius: 5px;
+	
+}
+.form-container form button:hover {
+	background: #09336d;
+	border: 2px solid #09336d;
+	color: #fff;
+}
+/*css of registration page ends*/

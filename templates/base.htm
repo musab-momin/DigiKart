@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/base.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheet/index.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheet/view.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheet/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheet/signup.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+  }
+  
+  #snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+
+    </style>
+</head>
+<body>
+    <!-- nav start  -->
+    <header>
+        <div class="logo">
+            <a href="/">
+                <h1><i>SHOPIFY</i></h1>
+            </a>
+        </div>
+        <div class="search">
+            <form action="">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+        </div>
+        <div class="cart">
+            <span style="color: #fff; font-size: 1rem;" id="cart_count"></span>
+            <a href="/checkout"><i class="fas fa-shopping-cart fa-3x" style="color: #fff;"></i></a>
+        </div>
+        <div class="burger">
+            <button onclick="toggle()"><i class="fas fa-bars fa-2x" style="color: #fff;"></i></button>
+        </div>
+        <div class="menu" id="menu" style="display: none;">
+            <nav>
+                <button onclick="toggle()"><i class="fas fa-times fa-2x" style="background: #fff; border: none;"></i></button>
+                <ul>
+                    <li>
+                        <span></span>
+                        {% if user.is_authenticated %}
+                            <h3 style="font-size: 1.4rem;">{{ user.username }}</h3>
+                            {% else %}
+                                <span><i class="fas fa-sign-in-alt fa-2x"></i></span>
+                                <a href="/login" class="list-group-item">Login</a>                  
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if user.is_authenticated %}
+                            <span><i class="fas fa-sign-in-alt fa-2x"></i></span>
+                            <a href="/logout" class="list-group-item">Logout</a>
+                            {% else %}
+                                <span><i class="fas fa-sign-in-alt fa-2x"></i></span>
+                                <a href="/signup" class="list-group-item">Register</a>                      
+                        {% endif %}
+                    </li>
+                    <!-- <li>
+                        {% if user.is_authenticated %}
+                            {% else %}
+                                <span><i class="fas fa-sign-in-alt fa-2x"></i></span>
+                                <a href="/signup" class="list-group-item">Register</a>
+                        {% endif %}
+                    </li> -->
+                    <li><span><i class="fas fa-info fa-2x"></i></span><a href="/about" class="list-group-item">About us</a></li>
+                    <li><span><i class="fas fa-phone fa-2x"></i></span><a href="/contact">Contact</a></li>
+                    <li><span><i class="fas fa-truck-moving fa-2x"></i></span><a href="/track">Track order</a></li>
+                    <li><span><i class="fas fa-cog fa-2x"></i></span><a href="/track">Settings</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
+        
+    </section>
+    <!-- nav ends -->
+
+    <!-- common body start -->
+    {% block body %}{% endblock body %}
+
+    <!-- common boyd ends -->
+    <script>
+        const toggle = ()=>
+        {
+            let menu = document.getElementById('menu');
+            console.log(menu)
+            console.log(menu.style.display)
+            if(menu.style.display=='none')
+            {
+                menu.style.display = 'block';
+                document.getElementById('slideshow').style.zIndex = -1;
+                document.getElementById('card').style.zIndex = -1;
+            }
+            else
+            {
+                menu.style.display = 'none';
+                document.getElementById('slideshow').style.zIndex = 1;
+                document.getElementById('card').style.zIndex = 1;
+            }
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+</body>
+</html>

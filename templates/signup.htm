@@ -1,0 +1,62 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% block title %}signup{% endblock title %}
+
+
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                <h3>{{ message }}</h3>
+        {% endfor %}
+            </div>
+    {% endif %}
+    <!-- <div class="message">
+        <h3>{{ message }}</h3>
+    </div> -->
+
+    <div class="rcontainer">
+        <div class="form-container">
+			<form action="/signup" method="post">
+                {% csrf_token %}
+				<h2>Register!</h2>
+				<input type="text" placeholder="enter your name" name="username" id="name" pattern="[A-Za-z]+" required="required"><br>
+				<input type="email" placeholder="enter your email" name="useremail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required="required"><br>
+				<input type="password" placeholder="enter your password" id="pass" name="userpassword" onkeypress="validate()" pattern=".{8,}" required="required"><br>
+				<div class="validate" style="display:none; border: none;">
+					<p style='color: crimson; text-align: left;'>password should be of 8 character</p>
+				</div><br>
+				<!-- <textarea rows="5" cols="25" placeholder="enter your address" 
+                name="user_address" required="required"></textarea> -->
+                
+				<div class="add">
+                    <input type="text" placeholder=" Address" name="address" id="name" required="required"><br>
+                    <input type="text" placeholder=" City" name="city" id="name" pattern="[A-Za-z]+" required="required"><br>
+                </div>
+                <div class="add">
+                    <input type="text" placeholder="State" name="state" id="name" pattern="[A-Za-z]+" required="required"><br>
+                    <input type="text" placeholder="Zipecode" name="zipcode" id="name"  required="required"><br>
+                </div>
+                <button type="submit" id="register_btn">Register</button>
+			</form>
+            <div class="redirector">
+                <span>already have account</span><a href="/login"> Login from here!</a>
+            </div>
+		</div>
+    </div>
+    <script>
+        function validate()
+        {
+            var name_field = document.querySelector('.validate');
+	        name_field.style.display = 'block';
+	        if(document.getElementById('pass').value.length > 6)
+	        {
+		        console.log(document.getElementById('pass').value.length);
+		        name_field.style.color = 'greeen';
+		        name_field.style.display = 'none';
+//		document.getElementById('register_btn').disable = false;
+	        }
+        }
+
+    </script>
+{% endblock body %}

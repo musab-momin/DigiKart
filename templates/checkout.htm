@@ -1,0 +1,204 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% block title %}Checkout{% endblock title %}
+
+
+{% block body %}
+
+<div class="main">
+    <div class="elements" id="elements">
+        <h2>SHOPING CART</h2>
+        <hr>
+    </div>
+    <div class="bill">
+        <div class="pay">
+            <span>items cost</span>
+            <span id="items_amount">00</span>
+        </div>
+        <div class="pay">
+            <span>Shipping</span>
+            <span>free</span>
+        </div>
+        <div class="pay-bill">
+            <span>TOTAL: </span>
+            <span id="pay_amount">00</span>
+        </div>
+        <form method="POST" action="/checkout">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+            <input type="text" name="amount" id="bill_input"  readonly hidden>
+            <input type="email" name="email" id="eamil" value="{{ user.email }}" readonly hidden>
+            {% endif %}
+            <button type="submit">PROCED TO PAY</button>
+        </form>
+    </div>
+</div>
+<div class="main">
+    <button onclick="clear_cart()">Clear Cart</button>
+</div>
+
+<script src="{% static 'scripts/cart.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+<script>
+    
+    let total_price = 0
+const billInfo = ()=>
+{
+    let p = {'p1': 'element1', 'p2':'element2'}
+    let new_cart = JSON.parse(localStorage.getItem('cart'))
+    //let div = document.getElementById('details');
+    for(let i in new_cart)
+    {
+        let item_name = new_cart[i][1];
+        //console.log('This is name: ' + item_name)
+        let item_quantity = new_cart[i][0];
+        let item_price = new_cart[i][2];
+        let total = item_price*item_quantity
+        let element = `<div class="details" id="details">
+            <h3>${item_name}</h3>
+            <h3>${item_quantity}</h3>
+            <h3>&#8377;${total}</h3>
+            <button onclick='single_delete("${item_name}")'><i class="fas fa-trash-alt"></i>Delete</button>
+        </div>`
+        $('#elements').append(element);    
+    }
+    //console.log(div)
+    // console.log(new_cart)
+    let total_bill = 0;
+    for(let i in new_cart)
+    {
+        let q = new_cart[i][0];
+        let p = new_cart[i][2];
+        let total = q*p
+        total_bill+=total;
+    }
+    document.getElementById('items_amount').innerHTML = total_bill
+    document.getElementById('pay_amount').innerHTML = total_bill
+}
+
+
+//clear cart function
+const clear_cart = ()=>
+{
+  localStorage.clear()
+  alert("Cart is Clear")
+  location.reload(); 
+}
+
+const single_delete = (pname)=>
+{
+    let cart = JSON.parse(localStorage.getItem('cart'))
+    //console.log(pname)
+    for(let i in cart)
+    {
+        console.log(delete cart[i])
+        // if(cart[i][1]==pname)
+        // {
+        //     delete cart[i];
+        //     alert('This is working')
+        //     location.reload(); 
+        // }
+    }
+}
+
+const showBill = ()=>
+{
+    let string_cart = localStorage.getItem('cart');
+    let cart = JSON.parse(string_cart)
+    if(cart==null || cart.length==0)
+    {
+        console.log('cart is empty')
+        document.getElementById('elements').append('You have not shop anything yet!');
+    }
+    else
+    {
+        console.log(cart)
+        let parent = document.getElementById('elements');
+        //making gui 
+        cart.map((item)=>{
+            parent.innerHTML+= `<div class="details" id="details">
+            <h3>${item.productName}</h3>
+            <div class="qty">
+                <button onclick='incrementer(${item.productId})'>+</button>
+                <h3>${item.productQuantity}</h3>
+                <button onclick='decrementer(${item.productId})'>-</button>
+            </div>
+            <h3>&#8377;${item.productPrice * item.productQuantity}</h3>
+            <button onclick='delete_item(${item.productId})'><i class="fas fa-trash-alt"></i></button>
+        </div>`
+        total_price +=item.productPrice*item.productQuantity;
+
+        });
+        document.getElementById('items_amount').innerHTML = '&#8377;'+total_price;
+        document.getElementById('pay_amount').innerHTML = '&#8377;'+total_price;
+    }
+ 
+}
+
+
+const delete_item = (pid)=>
+{
+    // alert(pid)
+    let cart = JSON.parse(localStorage.getItem('cart'))
+    let new_cart = cart.filter((item) => item.productId != pid)
+    localStorage.setItem('cart', JSON.stringify(new_cart))
+    alert('item removed')
+    location.reload()
+}
+
+
+const incrementer = (pid) =>
+{
+   let cart = JSON.parse(localStorage.getItem('cart'))
+   cart.map((item)=>
+   {
+       if(item.productId==pid)
+       {
+           item.productQuantity = item.productQuantity+1;
+           localStorage.setItem('cart', JSON.stringify(cart));
+           //alert('quantity increase')
+           location.reload()
+       }
+   });
+}
+
+const decrementer = (pid)=>
+{
+    let cart = JSON.parse(localStorage.getItem('cart'))
+   cart.map((item)=>
+   {
+       if(item.productId==pid)
+       {
+           if(item.productQuantity<=1)
+           {
+               alert('atleast one')
+           }
+           else
+           {
+               item.productQuantity = item.productQuantity-1;
+               localStorage.setItem('cart', JSON.stringify(cart));
+               //alert('quantity decrease')
+               location.reload()
+           }
+       }
+   });
+}
+
+
+
+const setValue = ()=>
+{
+    let a = document.getElementById('bill_input');
+    a.value = total_price
+}
+
+showBill()
+setValue()
+//billInfo()
+
+
+</script>
+
+
+{% endblock body %}
+
