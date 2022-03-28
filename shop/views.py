@@ -55,11 +55,11 @@ def checkout(request):
         order = Order(email=email, amount = bill_amount)
         order.save()
         print('order is saved')        
-
+        updated_order_id = "ORDERID_" +str(order.id) 
         #making paytem request for money transfer
         data_dict = {
             'MID': 'LDYxUY86818217872725',
-            'ORDER_ID': str(order.id),
+            'ORDER_ID': updated_order_id,
             'TXN_AMOUNT': str(bill_amount),
             'CUST_ID': email,
             'INDUSTRY_TYPE_ID': 'Retail',
@@ -132,7 +132,13 @@ def handlepayment(request):
     form = request.POST
     response_dict = {}
     for i in form.keys():
-        response_dict[i] = form[i]
+        
+        if( i == "ORDERID" ):
+            value = "ORDERID_"+form[i]+"_987321134FWFA"
+        else:
+            value = form[i]
+        response_dict[i] = value
+        print(">>>>>>>>>>" + i + ' : ' +value);
         if i == 'CHECKSUMHASH':
             checksum = form[i]
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)

@@ -30,7 +30,7 @@ class User(models.Model):
 
 class Order(models.Model):
     email = models.EmailField(max_length=50)
-    amount = models.IntegerField(max_length=100)
+    amount = models.IntegerField()
 
     def __str__(self):
         return self.email    
